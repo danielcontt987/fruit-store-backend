@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsers extends Migration
+class CreateInventories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsers extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('phone');
-            $table->string('img');
-            $table->string('password');
-            $table->string('email');
+            $table->integer('user_id');
+            $table->integer('product_id');
+            $table->enum('type',['kg', 'part'])->default('kg');
+            $table->integer('min');
+            $table->integer('max');
+            $table->integer('stock');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('inventories');
     }
 }
