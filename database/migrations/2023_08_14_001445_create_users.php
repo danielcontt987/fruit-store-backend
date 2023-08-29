@@ -18,7 +18,7 @@ class CreateUsers extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->string('phone');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->string('password');
             $table->string('email');
             $table->timestamps();

@@ -24,3 +24,8 @@ $router->post('login', "AuthController@login");
 $router->group(['prefix' => '/user', "middleware" => App\Http\Middleware\CorsMiddleware::class], function () use ($router) {
     $router->get('/list', 'AuthController@listUser');
 });
+
+$router->group(['prefix' => '/client', "middleware" => App\Http\Middleware\CorsMiddleware::class], function () use ($router) {
+    $router->post('/store', 'ClientController@createClient');
+    $router->post('/list', 'ClientController@listClient');
+});
