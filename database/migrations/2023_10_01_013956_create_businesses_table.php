@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSales extends Migration
+class CreateBusinessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,8 @@ class CreateSales extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->id();
-            $table->integer('folio');
-            $table->integer('user_id');
-            $table->integer('client_id');
-            $table->double('subtotal');
-            $table->double('quantity');
-            $table->double('total');
-            $table->double('iva');
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ class CreateSales extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('businesses');
     }
 }

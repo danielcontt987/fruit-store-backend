@@ -17,11 +17,14 @@ class CreateUsers extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name');
-            $table->string('phone');
-            $table->string('img')->nullable();
+            $table->string('telephone');
+            $table->string('image')->nullable();
             $table->string('password');
             $table->string('email');
+            $table->unsignedBigInteger('business_id');
+            $table->foreign('business_id')->references('id')->on('business');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
