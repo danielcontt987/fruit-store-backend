@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Lumen\Auth\Authorizable;
 use Laravel\Passport\HasApiTokens;
 
@@ -20,7 +21,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'last_name', 'phone', 'password',
+        'name',
+        'last_name',
+        'telephone',
+        'image',
+        'email',
+        'password',
+        'is_edit',
+        'curp',
+        'rfc',
+        'int',
+        'ext',
+        'status',
+        'type_user',
+        'business_id',
+        'colony_id',
     ];
 
     /**
@@ -30,5 +45,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
-    ];
+    ];    
 }

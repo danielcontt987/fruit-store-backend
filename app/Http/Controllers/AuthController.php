@@ -75,13 +75,7 @@ class AuthController extends Controller
 
     public function listUser()
     {
-        $users = User::select(
-            'name',
-            'last_name',
-            'email',
-            'phone'
-
-        )->get();
+        $users = User::get();
 
         return response()->json(['status' => 200, "users" => $users]);
     }

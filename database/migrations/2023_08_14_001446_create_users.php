@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClients extends Migration
+class CreateUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,25 @@ class CreateClients extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('last_name');
             $table->string('telephone');
             $table->string('image')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email');
+            $table->string('password');
+            $table->boolean('is_edit')->default(false);
             $table->string('curp')->nullable();
             $table->string('rfc')->nullable();
             $table->integer('int')->nullable();
             $table->integer('ext');
             $table->enum('status',['active', 'inactive'])->default('active');
             $table->enum('type_user',['admin', 'employee'])->default('employee');
-            $table->unsignedBigInteger('colony_id');
-            $table->foreign('colony_id')->references('id')->on('colonies');
             $table->unsignedBigInteger('business_id');
             $table->foreign('business_id')->references('id')->on('business');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('colony_id');
+            $table->foreign('colony_id')->references('id')->on('colonies');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -44,6 +44,6 @@ class CreateClients extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('users');
     }
 }

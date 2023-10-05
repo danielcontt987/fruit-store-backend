@@ -21,11 +21,15 @@ $router->get('/', function () use ($router) {
 $router->post('register', "AuthController@register");
 $router->post('login', "AuthController@login");
 
-$router->group(['prefix' => '/user', "middleware" => App\Http\Middleware\CorsMiddleware::class], function () use ($router) {
+$router->group(['prefix' => '/user', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
     $router->get('/list', 'AuthController@listUser');
 });
 
 $router->group(['prefix' => '/client', "middleware" => App\Http\Middleware\CorsMiddleware::class], function () use ($router) {
     $router->post('/store', 'ClientController@createClient');
     $router->post('/list', 'ClientController@listClient');
+});
+
+$router->group(['prefix' => '/product', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
+    $router->get('/list', "ProductController@list");
 });
