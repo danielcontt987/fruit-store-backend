@@ -11,4 +11,14 @@ class InventoryDetail extends Model
         'product_id',
         'inventory_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function inventory()
+    {
+        return $this->belongsTo(Inventory::class, 'inventory_id');
+    }
 }

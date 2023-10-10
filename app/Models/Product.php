@@ -18,4 +18,14 @@ class Product extends Model
         'category_id',
         'user_id',
     ];
+
+    public function inventorydetail()
+    {
+        return $this->belongsTo(InventoryDetail::class, 'id');
+    }
+
+    public function user() 
+    {
+        return $this->hasOne(User::class, 'id');
+    }
 }

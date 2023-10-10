@@ -8,7 +8,7 @@ class ProductMS extends Microservice
 {
     public static function list()
     {
-        $products = ProductModel::get();
+        $products = ProductModel::with(['user', 'inventorydetail.inventory.area'])->get();
         return $products;
     }
 }

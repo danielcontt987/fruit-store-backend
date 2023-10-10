@@ -33,3 +33,7 @@ $router->group(['prefix' => '/client', "middleware" => App\Http\Middleware\CorsM
 $router->group(['prefix' => '/product', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
     $router->get('/list', "ProductController@list");
 });
+
+$router->group(['prefix' => '/areas', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
+    $router->get('/list', "AreaController@list");
+});

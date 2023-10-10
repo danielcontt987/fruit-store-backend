@@ -10,4 +10,9 @@ class Inventory extends Model
         'name',
         'area_id',
     ];
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }
