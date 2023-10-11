@@ -25,9 +25,8 @@ $router->group(['prefix' => '/user', "middleware" => App\Http\Middleware\CorsMid
     $router->get('/list', 'AuthController@listUser');
 });
 
-$router->group(['prefix' => '/client', "middleware" => App\Http\Middleware\CorsMiddleware::class], function () use ($router) {
-    $router->post('/store', 'ClientController@createClient');
-    $router->post('/list', 'ClientController@listClient');
+$router->group(['prefix' => '/client', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
+    $router->get('/list', 'ClientController@list');
 });
 
 $router->group(['prefix' => '/product', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {

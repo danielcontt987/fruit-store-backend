@@ -2,32 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Microservices\Client as ClientMS;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function listClient(Request $request) 
+    public function list(Request $request) 
     {
-        $clients = Client::where('user_id', $request->id)->with('user')->get();
-        
-        return response()->json(['status' => 200, 'clients' => $clients]);
- 
+        return response()->json(['status' => 200, 'clients' => ClientMS::list($request)]);
     }
-
-    public function createClient(Request $request) 
-    {
-        Client::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'user_id' => intval($request->user_id),
-            'status' => $request->status,
-            'email' => $request->email,
-        ]);
-
-        return response()->json(['status' => 200]);
- 
-    }
-
-
 }

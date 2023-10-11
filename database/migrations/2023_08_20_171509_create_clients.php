@@ -25,7 +25,7 @@ class CreateClients extends Migration
             $table->integer('int')->nullable();
             $table->integer('ext');
             $table->enum('status',['active', 'inactive'])->default('active');
-            $table->enum('type_user',['admin', 'employee'])->default('employee');
+            $table->enum('type_user',['client'])->default('client');
             $table->unsignedBigInteger('colony_id');
             $table->foreign('colony_id')->references('id')->on('colonies');
             $table->unsignedBigInteger('business_id');
