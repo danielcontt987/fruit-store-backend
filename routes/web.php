@@ -37,3 +37,7 @@ $router->group(['prefix' => '/product', "middleware" => App\Http\Middleware\Cors
 $router->group(['prefix' => '/areas', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
     $router->get('/list', "AreaController@list");
 });
+
+$router->group(['prefix' => '/inventory', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
+    $router->get('/list', "InventoryController@list");
+});
