@@ -20,7 +20,6 @@ $router->get('/', function () use ($router) {
 //Users
 $router->post('register', "AuthController@register");
 $router->post('login', "AuthController@login");
-
 $router->group(['prefix' => '/user', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
     $router->get('/list', 'AuthController@listUser');
 });
@@ -39,4 +38,15 @@ $router->group(['prefix' => '/areas', "middleware" => App\Http\Middleware\CorsMi
 
 $router->group(['prefix' => '/inventory', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
     $router->get('/list', "InventoryController@list");
+});
+
+$router->group(['prefix' => '/salebox', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
+    $router->get('/list', "SaleBoxController@list");
+    $router->post('/store', "SaleBoxController@store");
+});
+
+$router->group(['prefix' => '/cashcut', "middleware" => App\Http\Middleware\CorsMiddleware::class, "middleware" => 'auth'], function () use ($router) {
+    $router->get('/list', "CashCutController@list");
+    $router->get('/get', "CashCutController@get");
+    $router->post('/store', "CashCutController@store");
 });
